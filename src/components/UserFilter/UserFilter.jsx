@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Input from '@material-ui/core/Input'
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -22,37 +22,37 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: center;	
+	align-items: baseline;	
 	min-height: 100px;
 	 `;
 
 
-
-
-const UserFilter = (props) => {
+const UserFilter = ({ onFilter }, ...props) => {
 	const classes = useStyles();
 
-	const [ filter, setFilter ] = React.useState(() => ({
+
+	const [filter, setFilter] = React.useState(() => ({
 		first_name: '',
 		last_name: '',
 		status: '',
 		gender: ''
 	}));
-	let filterString = '';
+
 
 	React.useEffect(() => {
+		let filterString = '';
 		for (let key in filter) {
-			if(filter[key]){
+			if (filter[key]) {
 				filterString = filterString + '&' + key + '=' + filter[key];
 			}
 		}
-		props.onFilter(filterString);
+		onFilter(filterString);
 
-	}, [ filter ]);
+	}, [filter, onFilter] );
 
-    const filtersFunc = (e) => {
-    	const name = e.target.name;
-    	const value = e.target.value;
+	const filtersFunc = (e) => {
+		const name = e.target.name;
+		const value = e.target.value;
 		setFilter((currentState) => {
 			return {
 				...currentState,
@@ -62,15 +62,17 @@ const UserFilter = (props) => {
 	};
 
 	return <Wrapper>
-	<Input type="text"
-	       name="first_name"
-		   onChange={filtersFunc}
-		   value={filter.first_name}
-	 />
+		<Input type="text"
+			   name="first_name"
+			   onChange={filtersFunc}
+			   value={filter.first_name}
+			   placeholder={'First name'}
+		/>
 		<Input type="text"
 			   name="last_name"
 			   onChange={filtersFunc}
 			   value={filter.last_name}
+			   placeholder={'Last name'}
 		/>
 
 		<FormControl className={classes.formControl}>

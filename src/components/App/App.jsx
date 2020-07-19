@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-	BrowserRouter,
 	Switch,
 	Route,
 } from 'react-router-dom';
@@ -9,16 +8,15 @@ import {
 	Users,
 	Posts,
 	User,
-	UserCreate
+	UserCreate,
+	UserEdit
 } from 'routes';
 import Header from 'components/Header';
 
 const App = () => {
 
 	return <React.Fragment>
-
-		<BrowserRouter>
-			<Header/>
+		<Header/>
 			<Switch>
 				<Route
 					exact
@@ -31,15 +29,16 @@ const App = () => {
 				<Route  path={`/users/create`}>
 					<UserCreate />
 				</Route>
-				<Route path={`/users/:id`}>
+				<Route  path={`/users/:id/edit`}>
+					<UserEdit />
+				</Route>
+				<Route exact path={`/users/:id`}>
 					<User />
 				</Route>
 				<Route path={`/posts`}>
 					<Posts />
 				</Route>
 			</Switch>
-		</BrowserRouter>
-
 	</React.Fragment>;
 
 };

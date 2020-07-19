@@ -1,5 +1,5 @@
 import axios from 'axios';
-import accessTocken from 'const/accessTocken.js'
+import accessTocken from 'const/accessTocken.js';
 
 
 export const get = function (page, filterString, callback) {
