@@ -8,18 +8,16 @@ import {
 
 const Wrapper = styled(Primary)`
     background-color: rgba(23, 24, 32, 0.9);
-    background-image: linear-gradient(to top right, rgba(23, 24, 32, 0.9), rgba(51, 51, 51, 0.9));
 	flex-direction: row;
 	width: 100%;
 	justify-content: space-between;
-	padding: 10px;
+	padding: 10px 40px;
 	margin-bottom: 10px;	 
 	  & a{
 	  text-decoration: none;
 	  }
 	  & h1{
-	         color: rgb(97,218,251);
-	         margin-left: 20px;
+	         color: #FF8A00;
 	        }	
 `;
 
@@ -27,9 +25,9 @@ class Header extends React.Component {
 
     render = () => {
         return <Wrapper>
-            <Link to="/">
+            <Link to="/products">
                 <h1>
-                    Logo
+                    Catalog
                 </h1>
             </Link>
             <Navigation/>

@@ -1,6 +1,5 @@
 import React from 'react';
 import Loader from 'components/Loader';
-import Pagination from '@material-ui/lab/Pagination';
 import styled from 'styled-components';
 
 
@@ -8,65 +7,64 @@ class Paginate extends React.PureComponent {
 	static defaultProps = {
 		func: () => {
 		},
-		index: 1,
-		limit: 10,
+		next_cursor: '',
 		filterString: ''
 	};
 
 	state = {
-		index: this.props.index,
-		total: 0,
-		limit: this.props.limit,
+		next_cursor: '',
 		filterString: this.props.filterString
 	};
 
 	componentDidMount = () => {
-		this.props.func(this.state.index, this.state.filterString, (total, callback) => {
+		window.addEventListener('scroll', this.handleScroll);
+		this.props.func(this.state.next_cursor, this.state.filterString, (next_cursor, callback) => {
 			this.setState((currentState) => ({
 				...currentState,
-				total,
+				next_cursor,
 			}), callback)
 		});
 	};
 
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScroll);
+	}
+
 	componentDidUpdate(prevProps, prevState, snapshot) {
 		if (prevProps.filterString !== this.props.filterString) {
-			this.props.func(1, this.props.filterString, (total, callback) => {
+			this.props.func('', this.props.filterString, (next_cursor, callback) => {
 				this.setState((currentState) => ({
 					...currentState,
-					total,
+					next_cursor,
 				}), callback)
 			});
 		}
 	}
 
-	onPage = (event, value) => {
-		const {index: currentIndex} = this.state;
+	handleScroll = () => {
+		if (Math.round(window.innerHeight + document.documentElement.scrollTop) !== document.documentElement.offsetHeight) return;
+		this.onPage();
+	};
 
-		if (value !== currentIndex) {
-			this.props.func(value, this.props.filterString, (total, callback) => {
-				this.setState((currentState) => ({
-					...currentState,
-					total,
-					index: value,
-				}), callback)
-			});
-		}
+	onPage = () => {
+		const {next_cursor} = this.state;
+
+		this.props.func(next_cursor, this.props.filterString, (next_cursor, callback) => {
+			this.setState((currentState) => ({
+				...currentState,
+				next_cursor
+			}), callback)
+		});
 	};
 
 	render = () => {
 		const {children = []} = this.props;
-		const {total, limit, index} = this.state;
-		const pages = Math.ceil(total / limit);
-
 		return <React.Fragment>
-			<UserCount>Общее количество пользователей: {(total > 0) && total}</UserCount>
 			<Wrapper>
-			{children.length > 0
-				? children
-				: <Loader/>}
+				{children.length > 0
+					? children
+					: <Loader/>}
 			</Wrapper>
-			<Pagination count={pages} page={index} onChange={this.onPage}/>
 		</React.Fragment>
 	};
 };

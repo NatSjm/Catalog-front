@@ -4,14 +4,15 @@ import {
 	Route,
 } from 'react-router-dom';
 import {
-	Main,
-	Users,
-	Posts,
-	User,
-	UserCreate,
-	UserEdit
+	Products,
+	Product,
+	ProductCreate,
+	ProductEdit,
+	Login
 } from 'routes';
 import Header from 'components/Header';
+import GuestRoute from 'components/GuestRoute';
+import PrivateRoute from 'components/PrivateRoute';
 
 const App = () => {
 
@@ -21,23 +22,23 @@ const App = () => {
 				<Route
 					exact
 					path="/">
-					 <Main />
+					 <Products />
 				</Route>
-				<Route exact path={`/users`}>
-					<Users />
+				<Route exact path={`/products`}>
+					<Products />
 				</Route>
-				<Route  path={`/users/create`}>
-					<UserCreate />
-				</Route>
-				<Route  path={`/users/:id/edit`}>
-					<UserEdit />
-				</Route>
-				<Route exact path={`/users/:id`}>
-					<User />
-				</Route>
-				<Route path={`/posts`}>
-					<Posts />
-				</Route>
+				<PrivateRoute  path={`/products/create`}>
+					<ProductCreate />
+				</PrivateRoute>
+				<PrivateRoute  path={`/products/:id/edit`}>
+					<ProductEdit />
+				</PrivateRoute>
+				<PrivateRoute exact path={`/products/:id`}>
+					<Product />
+				</PrivateRoute>
+				<GuestRoute path={`/login`}>
+					<Login />
+				</GuestRoute>
 			</Switch>
 	</React.Fragment>;
 

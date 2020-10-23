@@ -1,9 +1,8 @@
 import styled from 'styled-components';
+import BaseButton from "@material-ui/core/Button";
 
-const Button = styled.button`
-	cursor: pointer;
-	text-transform: uppercase;
-	border: 1px solid transparent;
+const Button = styled(BaseButton)`
+	margin-top: 20px;
 `;
 
 export default Button;

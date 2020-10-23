@@ -1,6 +1,5 @@
 import Store from 'components/Store';
 
-
 const onDialog = (name = '', body = {}) => () => {
 	Store.dispatch({
 		type: 'dialogs',

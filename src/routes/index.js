@@ -1,16 +1,16 @@
 import Main from './Main';
-import Posts from './Posts';
-import Users from './Users';
-import User from './User';
-import UserCreate from './UserCreate';
-import UserEdit from './UserEdit';
+import Products from './Products';
+import Product from './Product';
+import ProductCreate from './ProductCreate';
+import ProductEdit from './ProductEdit';
+import Login from './Login';
 
 
 export {
     Main,
-    Posts,
-    Users,
-    User,
-    UserCreate,
-    UserEdit
+    Products,
+    Product,
+    ProductCreate,
+    ProductEdit,
+    Login
 };

@@ -1,10 +1,10 @@
 import React from 'react';
-import DeleteUser from './DeleteUser';
+import DeleteProduct from './DeleteProduct';
 
 
 let Dialogs = ({ children}) => {
 	return <React.Fragment>
-		<DeleteUser/>
+		<DeleteProduct/>
 		{children}
 	</React.Fragment>;
 };
