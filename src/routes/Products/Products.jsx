@@ -3,6 +3,7 @@ import { ContentWrapper } from 'components/Block';
 import { useSelector } from 'react-redux';
 import Paginate from 'components/Paginate';
 import ProductCard from 'components/ProductCard';
+import ProductFilter from 'components/ProductFilter';
 
 import {
 	Link,
@@ -21,13 +22,24 @@ const Products = () => {
 	let category = query.get('category') || '';
 	const data = useSelector((state) => [...state.products]) ;
 	const [ filterString, setFilterString ] = React.useState('');
+	//
+	// React.useEffect(() => {
+	// 	setFilterString(`&category=${category}`);
+	// }, [category] );
 
-	React.useEffect(() => {
-		setFilterString(`&category=${category}`);
-	}, [category] );
+	// React.useEffect(() => {
+	// 	setFilterString(`&category=${category}`);
+	// }, [category] );
+
+	 const onFilter = (string) => {
+		setFilterString(string);
+	};
 
 		return <ContentWrapper>
 			<CreateLink to={'/products/create'}>Create new product</CreateLink>
+			<ProductFilter
+				onFilter={onFilter}
+			    category={category}/>
 			<Paginate
 				func={fetchProducts}
 			    filterString={filterString}>
@@ -49,6 +61,7 @@ const CreateLink = styled(Link)`
    font-size: 20px;
    display: inline-block;
    margin: 20px;
+   margin-left: 6px;
 `;
 
 

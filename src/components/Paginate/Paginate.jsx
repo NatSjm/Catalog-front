@@ -4,21 +4,20 @@ import styled from 'styled-components';
 
 
 class Paginate extends React.PureComponent {
-	static defaultProps = {
-		func: () => {
-		},
-		next_cursor: '',
-		filterString: ''
-	};
+	// static defaultProps = {
+	// 	func: () => {
+	// 	},
+	// 	next_cursor: '',
+	// 	filterString: ''
+	// };
 
 	state = {
 		next_cursor: '',
-		filterString: this.props.filterString
 	};
 
 	componentDidMount = () => {
 		window.addEventListener('scroll', this.handleScroll);
-		this.props.func(this.state.next_cursor, this.state.filterString, (next_cursor, callback) => {
+		this.props.func(this.state.next_cursor, this.props.filterString, (next_cursor, callback) => {
 			this.setState((currentState) => ({
 				...currentState,
 				next_cursor,

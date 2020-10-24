@@ -12,7 +12,7 @@ import {
 const useStyles = makeStyles({
 	root: {
 		padding: '20px',
-		minWidth: 270,
+		minWidth: 300,
 		display: 'flex',
         flexDirection: 'column',
 	},

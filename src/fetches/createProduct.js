@@ -9,7 +9,6 @@ const create = async (push, data) => {
 			data,
 			Accept: 'application/json'
 		});
-        console.log(response);
         push('/products');
 	}
 	catch (err) {

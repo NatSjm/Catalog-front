@@ -9,6 +9,7 @@ import {
 import { fetchMe } from './fetches';
 import cookie from 'js-cookie';
 import jwt from 'jsonwebtoken';
+import GlobalStyle from 'components/GlobalStyle';
 
 const jwt_secret = 'qmuZvzXk9pee0nP1Gfe7BSA8GstsDShJosGYusu7ADtBO92l59cz6flXkosuuvNL';
 let token = cookie.get('token');
@@ -17,11 +18,6 @@ if (token) {
 		if (err) {
 			token = null;
 			cookie.remove('token');
-		} else {
-			if (decoded.iss !== (process.env.REACT_APP_BACK_PATH + '/api/auth/login')) {
-				token = null;
-				cookie.remove('token');
-			}
 		}
 	});
 }
@@ -30,6 +26,7 @@ const renderApp = () => {
 		<StoreProvider>
 			<BrowserRouter>
 				<Dialogs>
+					<GlobalStyle/>
 					<App/>
 				</Dialogs>
 			</BrowserRouter>
