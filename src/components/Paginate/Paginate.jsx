@@ -4,12 +4,6 @@ import styled from 'styled-components';
 
 
 class Paginate extends React.PureComponent {
-	// static defaultProps = {
-	// 	func: () => {
-	// 	},
-	// 	next_cursor: '',
-	// 	filterString: ''
-	// };
 
 	state = {
 		next_cursor: '',

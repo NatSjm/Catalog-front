@@ -1,8 +1,9 @@
 import axios from 'axios';
 import toPascalCase from 'utils/toPascalCase.js';
-import cookie from 'js-cookie';
+import Cookies from 'js-cookie';
 
-const token = cookie.get('token');
+
+
 const create = async (push, elements, id, type) => {
 
 	const data = {
@@ -19,10 +20,13 @@ const create = async (push, elements, id, type) => {
 		...(type === 'liquid soap' && {contains_surfactants: elements.contains_surfactants.checked})
 	};
 
+	const token = Cookies.get('token');
+
 	try {
 		axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 		const response = await axios(process.env.REACT_APP_BACK_PATH +'/api/products/' + id, {
 			method: 'post',
+
 			data,
 			Accept: 'application/json'
 		});
@@ -30,7 +34,9 @@ const create = async (push, elements, id, type) => {
         push('/products');
 	}
 	catch (err) {
-		console.log(err.response.data.errors);
+		if ( err.response.status === 403) {
+			console.log('unauthorized');
+		}
 	}
 };
 

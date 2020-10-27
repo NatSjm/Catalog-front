@@ -1,7 +1,11 @@
 import axios from 'axios';
-import cookie from 'js-cookie';
-const token = cookie.get('token');
+import Cookies from 'js-cookie';
+import logout from 'utils/logout';
+
+
+
 const create = async (push, data) => {
+	const token = Cookies.get('token');
 	try {
 		axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 		const response = await axios(process.env.REACT_APP_BACK_PATH +'/api/products', {
@@ -12,7 +16,9 @@ const create = async (push, data) => {
         push('/products');
 	}
 	catch (err) {
-		console.log(err.response.data.errors);
+		if ( err.response.status === 403) {
+			console.log('unauthorized');
+		}
 	}
 };
 

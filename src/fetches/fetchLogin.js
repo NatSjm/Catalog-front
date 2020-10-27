@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from 'components/Store';
-import cookie from 'js-cookie';
+import Cookies from 'js-cookie';
 
 
 const fetchLogin = async (e, push) => {
@@ -23,7 +23,7 @@ const fetchLogin = async (e, push) => {
 			data
 		});
 
-		cookie.set('token', response.data.access_token);
+		Cookies.set('token', response.data.access_token);
 
 		store.dispatch({
 			type: 'auth',

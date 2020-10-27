@@ -50,7 +50,7 @@ const ProductFilter = ({ onFilter, category }, ...props) => {
 	const [filter, setFilter] = React.useState(() => (initialState));
 
 	React.useEffect(() => {
-		//if (category) {
+
 			setFilter((currentState) => {
 				if(category === ''){
 					return initialState;

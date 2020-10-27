@@ -1,10 +1,12 @@
 import axios from 'axios';
 import onClose from 'components/Dialogs/onClose.js';
-import cookie from 'js-cookie';
+import Cookies from 'js-cookie';
+import logout from 'utils/logout';
 
-const token = cookie.get('token');
+
+
 const deleteProduct = async(action, id, history) => {
-
+	const token = Cookies.get('token');
 	try {
 		axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 		action((currentState) => {
@@ -30,6 +32,10 @@ const deleteProduct = async(action, id, history) => {
 
 	}
 	catch (err) {
+		if ( err.response.status === 403) {
+			console.log('unauthorized');
+			//logout();
+		}
 		console.log('err', err.message, err);
 	}
  };

@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories } from 'fetches';
-import cookie from 'js-cookie';
+import Cookies from 'js-cookie';
+import logout from 'utils/logout';
 
 import {
 	Link,
@@ -38,13 +39,10 @@ const Navigation = (props) => {
 	React.useEffect(() => {
 		fetchCategories()
 	}, []);
-
-	const handleLogout = (e) => {
+	const handleLogout = React.useCallback((e) => {
 		e.preventDefault();
-		cookie.remove('token');
-        dispatch({type: 'logout'});
-	};
-
+		logout()
+	},[]);
 
 	return <Wrapper>
 		{categories.length > 0
