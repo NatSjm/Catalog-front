@@ -44,7 +44,8 @@ const ProductFilter = ({ onFilter, category }, ...props) => {
 		category: '',
 		fragrance: '',
 		is_antibacterial: '',
-		price: ''
+		price: '',
+		product_value: ''
 
 	};
 	const [filter, setFilter] = React.useState(() => (initialState));
@@ -125,7 +126,7 @@ const ProductFilter = ({ onFilter, category }, ...props) => {
 			</Select>
 		</FormControl>
 		<FormControl className={classes.formControl}>
-			<InputLabel id="antibacterial-select-helper-label">Price</InputLabel>
+			<InputLabel id="price-select-helper-label">Price</InputLabel>
 			<Select
 				labelId="price-select-helper-label"
 				id="price-select-helper"
@@ -137,6 +138,21 @@ const ProductFilter = ({ onFilter, category }, ...props) => {
 				<MenuItem value="1000_10000">from 10 to 100</MenuItem>
 				<MenuItem value="10100_50000">from 101 to 500</MenuItem>
 				<MenuItem value=">_50000">{"> 500"}</MenuItem>
+			</Select>
+		</FormControl>
+		<FormControl className={classes.formControl}>
+			<InputLabel id="value-select-helper-label">Value</InputLabel>
+			<Select
+				labelId="value-select-helper-label"
+				id="value-select-helper"
+				value={filter.product_value || ''}
+				name="product_value"
+				onChange={filtersFunc}>
+				<MenuItem value="">all</MenuItem>
+				<MenuItem value="<_100">{"< 100"}</MenuItem>
+				<MenuItem value="100_500">from 100 to 500</MenuItem>
+				<MenuItem value="501_1000">from 501 to 1000</MenuItem>
+				<MenuItem value=">_1000">{"> 1000"}</MenuItem>
 			</Select>
 		</FormControl>
 	</Wrapper>;

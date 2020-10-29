@@ -38,7 +38,7 @@ const ProductCard = ({userItem}, ...props) => {
 				<Typography className={classes.title} color="textSecondary" gutterBottom>
 					{userItem.type.toLowerCase()}
 				</Typography>
-				<Typography color="textPrimary" variant = "h5" gutterBottom>
+				<Typography color="textPrimary" variant = "h4" gutterBottom>
 					{userItem.name}
 				</Typography>
 				<Typography variant="h6" component="p">
@@ -58,7 +58,7 @@ const ProductCard = ({userItem}, ...props) => {
 				</Typography>
 			</CardContent>
 			<CardActions className={classes.actions}>
-				<UserLink to={`/products/${userItem.id}`}>подробнее</UserLink>
+				<UserLink to={`/products/${userItem.id}`}>more</UserLink>
 			</CardActions>
 		</Card>
 	);
@@ -67,7 +67,7 @@ const ProductCard = ({userItem}, ...props) => {
 const UserLink = styled(Link)`
 				text-decoration: none;
 				color: black;
-				padding: 10px;
+				padding: 10px 20px;
 				background: lightgrey;
 				border-radius: 4px;
 				`;

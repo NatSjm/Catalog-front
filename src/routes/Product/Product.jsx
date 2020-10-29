@@ -8,8 +8,6 @@ import Button from '@material-ui/core/Button';
 import { useSelector } from 'react-redux';
 import { fetchProduct as productfunc } from 'fetches';
 import { ContentWrapper } from 'components/Block';
-
-
 import styled from "styled-components";
 import onDialog from 'utils/onDialog.js';
 
@@ -26,29 +24,30 @@ const Product = (props) => {
 	}, [id, productfunc]);
 
 
-	return  (Object.keys(product).length !== 0)
+	return (Object.keys(product).length !== 0)
 		? <ContentWrapper>
 			<Typography component="h2" variant="h4"> {product.type} {product.name}</Typography>
 			<div>
 				<CustomButton>
 					<EditLink to={`/products/${id}/edit`}>
-						Редактировать
+						Edit
 					</EditLink>
 				</CustomButton>
 				<CustomButton
 					onClick={onDialog('DeleteUser', {id: id})}>
-					Удалить
+					Delete
 				</CustomButton>
 			</div>
 			<Typography component="h3" variant="h5">fragrance: {product.fragrance}</Typography>
-			<Typography  variant="h6">price: {product.price} $</Typography>
+			<Typography variant="h6">price: {product.price} $</Typography>
 
 			{Object.entries(properties).map(([key, value], i) => {
 					return (value)
 						? typeof (value) === 'boolean'
 							? <Typography component="p" variant="h6" key={i}>{key}</Typography>
-							: <Typography component="p" variant="h6" key={i}><span>{key}: </span> <span>{value}</span></Typography>
-						:	<React.Fragment key={i}/>;
+							: <Typography component="p" variant="h6" key={i}><span>{key}: </span>
+								<span>{value}</span></Typography>
+						: <React.Fragment key={i}/>;
 				}
 			)}
 			<Typography mt={10} component="p" variant="body2">{product.description}</Typography>
@@ -67,6 +66,7 @@ background-color: #7a7a7a;
 margin: 20px;
 margin-left: 0;
 color: white;
+
   &:hover {
   border: 1px solid #7a7a7a;
   margin: 19px;
