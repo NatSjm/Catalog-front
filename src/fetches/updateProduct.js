@@ -26,7 +26,6 @@ const create = async (push, elements, id, type) => {
 		axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 		const response = await axios(process.env.REACT_APP_BACK_PATH +'/api/products/' + id, {
 			method: 'post',
-
 			data,
 			Accept: 'application/json'
 		});

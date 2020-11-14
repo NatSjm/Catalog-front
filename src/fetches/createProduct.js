@@ -1,7 +1,5 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import logout from 'utils/logout';
-
 
 
 const create = async (push, data) => {

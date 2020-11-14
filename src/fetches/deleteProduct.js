@@ -1,7 +1,6 @@
 import axios from 'axios';
 import onClose from 'components/Dialogs/onClose.js';
 import Cookies from 'js-cookie';
-import logout from 'utils/logout';
 
 
 

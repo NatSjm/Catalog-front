@@ -39,6 +39,8 @@ const ProductFilter = ({ onFilter, category }, ...props) => {
 
 
 	const fragrances = useSelector((state) => [...state.fragrances]);
+	const clearFilters = useSelector((state) => state.clearFilters);
+
 
 	const initialState = {
 		category: '',
@@ -53,15 +55,16 @@ const ProductFilter = ({ onFilter, category }, ...props) => {
 	React.useEffect(() => {
 
 			setFilter((currentState) => {
-				if(category === ''){
-					return initialState;
-				}
 				return {
 					...currentState,
 					category: category,
 				};
 			});
 	}, [category] );
+
+	React.useEffect(() => {
+		setFilter(initialState);
+	}, [clearFilters] );
 
 	React.useEffect(() => {
 		getProducts()

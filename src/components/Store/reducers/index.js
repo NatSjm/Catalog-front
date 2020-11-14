@@ -4,6 +4,7 @@ import dialogs from './dialogs.js';
 import categories from './categories.js';
 import fragrances from './fragrances.js';
 import auth from './auth.js';
+import clearFilters from './clearFilters';
 
 export {
 	auth,
@@ -11,5 +12,6 @@ export {
 	products,
 	dialogs,
 	categories,
-	fragrances
+	fragrances,
+	clearFilters
 };
